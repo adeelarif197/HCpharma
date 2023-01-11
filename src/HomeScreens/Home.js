@@ -16,7 +16,7 @@ import {Colors} from '../Theme/Colors';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import Btn from '../components/Btn';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const width = Dimensions.get('window').width - 30;
   const FullWidth = Dimensions.get('window').width;
   const Data = [
@@ -25,36 +25,36 @@ const Home = () => {
       img: require('../../assets/clean.png'),
       size: 60,
     },
-    {
-      name: 'Plumbing',
-      img: require('../../assets/plum.png'),
-      size: 60,
-    },
+    // {
+    //   name: 'Plumbing',
+    //   img: require('../../assets/plum.png'),
+    //   size: 60,
+    // },
     {
       name: 'Laundary',
       img: require('../../assets/laundary.png'),
       size: 40,
     },
-    {
-      name: 'Car Wash',
-      img: require('../../assets/car1.png'),
-      size: 40,
-    },
-    {
-      name: 'Cleaning',
-      img: require('../../assets/clean.png'),
-      size: 60,
-    },
+    // {
+    //   name: 'Car Wash',
+    //   img: require('../../assets/car1.png'),
+    //   size: 40,
+    // },
+    // {
+    //   name: 'Cleaning',
+    //   img: require('../../assets/clean.png'),
+    //   size: 60,
+    // },
   ];
   const ListData = [
     {
-      name: 'Kitchen Cleaning',
+      name: 'Dry Cleaning',
       price: '$150',
       off: '20% Off',
       img: require('../../assets/kitchen.jpg'),
     },
     {
-      name: 'House Cleaning',
+      name: 'Iron Pressing',
       price: '$150',
       off: '20% Off',
       img: require('../../assets/house.jpg'),
@@ -110,29 +110,36 @@ const Home = () => {
       </View>
     );
   };
-  const ItemStyle = ({item}) => {
+  const ItemStyle = ({item, index}) => {
     return (
       <View style={{alignItems: 'center'}}>
-        <View
-          style={{
-            alignItems: 'center',
-            backgroundColor: Colors.purelightblue,
-            marginHorizontal: 15,
-            width: 70,
-            height: 70,
-            borderRadius: 35,
-            justifyContent: 'center',
+        <TouchableOpacity
+          onPress={() => {
+            if (item.name == 'Laundary') {
+              navigation.navigate('Laundary');
+            }
           }}>
-          <Image
-            source={item.img}
-            resizeMode="stretch"
+          <View
             style={{
-              height: item.size,
-              width: item.size,
-              marginVertical: 8,
-            }}
-          />
-        </View>
+              alignItems: 'center',
+              backgroundColor: Colors.purelightblue,
+              marginHorizontal: 15,
+              width: 70,
+              height: 70,
+              borderRadius: 35,
+              justifyContent: 'center',
+            }}>
+            <Image
+              source={item.img}
+              resizeMode="stretch"
+              style={{
+                height: item.size,
+                width: item.size,
+                marginVertical: 8,
+              }}
+            />
+          </View>
+        </TouchableOpacity>
         <Text>{item.name}</Text>
       </View>
     );

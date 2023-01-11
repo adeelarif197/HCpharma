@@ -10,12 +10,12 @@ import OTP_Verify from './src/authScreens/OTP_Verify';
 import StackNavigation from './src/navigations/StackNavigation';
 import BottomNavigation from './src/navigations/BottomNavigation';
 import Home from './src/HomeScreens/Home';
+import Laundary from './src/HomeScreens/Laundary';
 const App = () => {
   return (
     <View style={{flex: 1}}>
-      <Home />
-      {/* <StackNavigation /> */}
-      {/* <BottomNavigation /> */}
+      <StackNavigation />
+      {/* <Laundary /> */}
     </View>
   );
 };

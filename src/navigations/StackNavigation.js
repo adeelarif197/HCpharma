@@ -9,6 +9,8 @@ import Forgot_Password from '../authScreens/Forgot_Password';
 import Email_Check from '../authScreens/Email_Check';
 import Create_Password from '../authScreens/Create_Password';
 import OTP_Verify from '../authScreens/OTP_Verify';
+import BottomNavigation from './BottomNavigation';
+import Laundary from '../HomeScreens/Laundary';
 const Stack = createStackNavigator();
 
 const StackNavigation = () => {
@@ -22,6 +24,8 @@ const StackNavigation = () => {
         <Stack.Screen name="Email_Check" component={Email_Check} />
         <Stack.Screen name="Create_Password" component={Create_Password} />
         <Stack.Screen name="OTP_Verify" component={OTP_Verify} />
+        <Stack.Screen name="Laundary" component={Laundary} />
+        <Stack.Screen name="BottomNavigation" component={BottomNavigation} />
       </Stack.Navigator>
     </NavigationContainer>
   );

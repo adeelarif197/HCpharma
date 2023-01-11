@@ -340,7 +340,9 @@ const Sign_In = ({navigation}) => {
           <Text>Forgot Password!</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.btnbox}>
+        <TouchableOpacity
+          style={styles.btnbox}
+          onPress={() => navigation.navigate('BottomNavigation')}>
           <Btn
             title={'Sign In'}
             width={'90%'}
