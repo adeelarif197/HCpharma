@@ -7,11 +7,13 @@ import {
   Dimensions,
   FlatList,
   ScrollView,
+  Modal,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import Entypo from 'react-native-vector-icons/Entypo';
 import {Colors} from '../Theme/Colors';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import Btn from '../components/Btn';
@@ -19,6 +21,9 @@ import Btn from '../components/Btn';
 const Home = ({navigation}) => {
   const width = Dimensions.get('window').width - 30;
   const FullWidth = Dimensions.get('window').width;
+  const [categry, setcategry] = useState('');
+  const [ModalVisible, setModalVisible] = useState(false);
+
   const Data = [
     {
       name: 'Cleaning',
@@ -58,12 +63,6 @@ const Home = ({navigation}) => {
       price: '$150',
       off: '20% Off',
       img: require('../../assets/house.jpg'),
-    },
-    {
-      name: 'Sofa Cleaning',
-      price: '$150',
-      off: '20% Off',
-      img: require('../../assets/sofa.jpg'),
     },
   ];
   const SwiperData = [
@@ -146,30 +145,70 @@ const Home = ({navigation}) => {
   };
   const ListStyle = ({item}) => {
     return (
-      <View style={styles.ListView}>
-        <Image
-          source={item.img}
-          style={{height: 80, width: 80, borderRadius: 7}}
-        />
-        <View style={{marginLeft: 10}}>
-          <Text style={{color: Colors.black, fontSize: 16, fontWeight: '500'}}>
-            {item.name}
+      <TouchableOpacity onPress={() => setcategry(item.name) + toggleModal()}>
+        <View style={styles.ListView}>
+          <Image
+            source={item.img}
+            style={{height: 80, width: 80, borderRadius: 7}}
+          />
+          <View style={{marginLeft: 10}}>
+            <Text
+              style={{color: Colors.black, fontSize: 16, fontWeight: '500'}}>
+              {item.name}
+            </Text>
+            <Text
+              style={{
+                color: Colors.black,
+                fontWeight: 'bold',
+                fontSize: 16,
+                marginVertical: 2,
+              }}>
+              {item.price}
+            </Text>
+            <Text style={{color: 'red', fontSize: 13, fontWeight: '500'}}>
+              {item.off}
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+  const ModalStyle = () => {
+    return (
+      <View style={{backgroundColor: Colors.white, flex: 1}}>
+        <TouchableOpacity onPress={() => toggleModal()}>
+          <Entypo
+            name="cross"
+            size={30}
+            color={Colors.black}
+            style={{marginVertical: 10, marginHorizontal: 20}}
+          />
+        </TouchableOpacity>
+        <Text
+          style={{
+            textAlign: 'center',
+            fontSize: 17,
+            fontWeight: 'bold',
+            color: Colors.black,
+            marginVertical: 10,
+          }}>
+          Cleaner Shop
+        </Text>
+        <View style={{width: '90%', alignSelf: 'center', marginTop: 10}}>
+          <Text style={{color: Colors.black, fontWeight: '500'}}>
+            {categry}
           </Text>
-          <Text
-            style={{
-              color: Colors.black,
-              fontWeight: 'bold',
-              fontSize: 16,
-              marginVertical: 2,
-            }}>
-            {item.price}
-          </Text>
-          <Text style={{color: 'red', fontSize: 13, fontWeight: '500'}}>
-            {item.off}
+          <Text style={{marginTop: 10}}>
+            At Our Shop Drycleaning is very similar to regular home laundering,
+            but a liquid solvent is used to clean your clothes instead of water
+            and detergent
           </Text>
         </View>
       </View>
     );
+  };
+  const toggleModal = () => {
+    setModalVisible(!ModalVisible);
   };
   return (
     <View style={{flex: 1, backgroundColor: Colors.white}}>
@@ -223,6 +262,18 @@ const Home = ({navigation}) => {
         <Text>Based on your recent activities</Text>
       </View>
       <FlatList data={ListData} renderItem={ListStyle} />
+
+      <Modal
+        visible={ModalVisible}
+        animationInTiming={100}
+        animationOutTiming={100}
+        animationIn={'zoomIn'}
+        animationOut={'zoomOut'}
+        backdropOpacity={0}
+        onBackdropPress={toggleModal}
+        onBackButtonPress={toggleModal}>
+        <ModalStyle />
+      </Modal>
     </View>
   );
 };
