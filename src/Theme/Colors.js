@@ -12,5 +12,8 @@ const Colors = {
   white: '#FFFFFF',
   btnColor: '#274997',
   lightgrey: '#f4f6f5',
+  darkblue: '#181d30',
+  lightblue: '#618cf5',
+  purelightblue: '#e7eeff',
 };
 export {Colors};
