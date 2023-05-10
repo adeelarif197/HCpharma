@@ -263,185 +263,410 @@
 //         fontFamily: Fonts.PoppinsRegular,
 //     }
 // })
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  StyleSheet,
-} from 'react-native';
-import React, {useState, useContext} from 'react';
-import * as yup from 'yup';
-import {Formik, Field} from 'formik';
-import CustomInput from '../components/CustomInput';
-export default function Sign_Up() {
-  const signUpValidationSchema = yup.object().shape({
-    fullName: yup.string().trim().required('Name is required'),
-    // phoneNumber: yup
-    //   .string()
-    //   .trim()
-    //   .matches(/^923\d{9}$|^03\d{9}$/, 'Enter a valid phone number')
-    //   .required('Phone number is required'),
-    // address: yup.string().required('Address is required'),
-    email: yup
-      .string()
-      .trim()
-      .email('Please enter valid email')
-      .required('Email is required'),
-    password: yup
-      .string()
-      .min(6, ({min}) => `Password must be at least ${min} characters`)
-      .trim()
-      .required('Password is required'),
-    confirmPassword: yup
-      .string()
-      .trim()
-      .oneOf([yup.ref('password')], 'Passwords do not match')
-      .required('Confirm password is required'),
-  });
-  const [fname, setfname] = useState();
-  const [email, setemail] = useState();
-  const [num, setnum] = useState();
-  const [address, setaddress] = useState();
-  const [pass, setpass] = useState();
-  const [cpass, setcpass] = useState();
 
-  return (
-    <View style={styles.mainView}>
-      <View>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          keyboardShouldPersistTaps="always">
-          <View style={{alignItems: 'center'}}>
-            <Image
-              source={require('../../assets/info.png')}
-              style={styles.img}
-              resizeMode="contain"
-            />
-          </View>
-          <Formik
-            validationSchema={signUpValidationSchema}
-            initialValues={{
-              fullName: '',
-              email: '',
-              password: '',
-              confirmPassword: '',
-            }}
-            onSubmit={values => {
-              console.log(values);
-              setfname(values.fullName);
-              setemail(values.email);
-              setpass(values.password);
-              setcpass(values.confirmPassword);
-            }}>
-            {({handleSubmit, isValid}) => (
-              <>
-                <View style={styles.txtBox}>
-                  <Text style={styles.txt}>Create New Account</Text>
-                </View>
 
-                <Field
-                  component={CustomInput}
-                  name="fullName"
-                  placeholder="𝖭𝖺𝗆𝖾"
-                  placeholderTextColor={'grey'}
-                />
+// import {
+//   View,
+//   Text,
+//   Image,
+//   TouchableOpacity,
+//   ScrollView,
+//   StyleSheet,
+// } from 'react-native';
+// import React, {useState, useContext} from 'react';
+// import * as yup from 'yup';
+// import {Formik, Field} from 'formik';
+// import CustomInput from '../components/CustomInput';
+// export default function Sign_Up() {
+//   const signUpValidationSchema = yup.object().shape({
+//     fullName: yup.string().trim().required('Name is required'),
+//     // phoneNumber: yup
+//     //   .string()
+//     //   .trim()
+//     //   .matches(/^923\d{9}$|^03\d{9}$/, 'Enter a valid phone number')
+//     //   .required('Phone number is required'),
+//     // address: yup.string().required('Address is required'),
+//     email: yup
+//       .string()
+//       .trim()
+//       .email('Please enter valid email')
+//       .required('Email is required'),
+//     password: yup
+//       .string()
+//       .min(6, ({min}) => `Password must be at least ${min} characters`)
+//       .trim()
+//       .required('Password is required'),
+//     confirmPassword: yup
+//       .string()
+//       .trim()
+//       .oneOf([yup.ref('password')], 'Passwords do not match')
+//       .required('Confirm password is required'),
+//   });
+//   const [fname, setfname] = useState();
+//   const [email, setemail] = useState();
+//   const [num, setnum] = useState();
+//   const [address, setaddress] = useState();
+//   const [pass, setpass] = useState();
+//   const [cpass, setcpass] = useState();
 
-                <Field
-                  component={CustomInput}
-                  name="email"
-                  placeholder="𝖤𝗆𝖺𝗂𝗅 𝖠𝖽𝖽𝗋𝖾𝗌𝗌"
-                  keyboardType="email-address"
-                  placeholderTextColor={'grey'}
-                />
+//   return (
+//     <View style={styles.mainView}>
+//       <View>
+//         <ScrollView
+//           showsVerticalScrollIndicator={false}
+//           keyboardShouldPersistTaps="always">
+//           <View style={{alignItems: 'center'}}>
+//             <Image
+//               source={require('../../assets/info.png')}
+//               style={styles.img}
+//               resizeMode="contain"
+//             />
+//           </View>
+//           <Formik
+//             validationSchema={signUpValidationSchema}
+//             initialValues={{
+//               fullName: '',
+//               email: '',
+//               password: '',
+//               confirmPassword: '',
+//             }}
+//             onSubmit={values => {
+//               console.log(values);
+//               setfname(values.fullName);
+//               setemail(values.email);
+//               setpass(values.password);
+//               setcpass(values.confirmPassword);
+//             }}>
+//             {({handleSubmit, isValid}) => (
+//               <>
+//                 <View style={styles.txtBox}>
+//                   <Text style={styles.txt}>Create New Account</Text>
+//                 </View>
 
-                <Field
-                  component={CustomInput}
-                  name="password"
-                  placeholder="𝖯𝖺𝗌𝗌𝗐𝗈𝗋𝖽"
-                  secureTextEntry
-                  placeholderTextColor={'grey'}
-                />
-                <Field
-                  component={CustomInput}
-                  name="confirmPassword"
-                  placeholder="𝖢𝗈𝗇𝖿𝗂𝗋𝗆 𝖯𝖺𝗌𝗌𝗐𝗈𝗋𝖽"
-                  secureTextEntry
-                  placeholderTextColor={'grey'}
-                />
-                <View style={styles.btnbox}>
-                  <TouchableOpacity
-                    onPressIn={handleSubmit}
-                    disabled={!isValid}>
-                    <View style={styles.btn}>
-                      <Text
-                        style={[styles.btntxt, {backgroundColor: '#274997'}]}>
-                        Signup
-                      </Text>
+//                 <Field
+//                   component={CustomInput}
+//                   name="fullName"
+//                   placeholder="𝖭𝖺𝗆𝖾"
+//                   placeholderTextColor={'grey'}
+//                 />
+
+//                 <Field
+//                   component={CustomInput}
+//                   name="email"
+//                   placeholder="𝖤𝗆𝖺𝗂𝗅 𝖠𝖽𝖽𝗋𝖾𝗌𝗌"
+//                   keyboardType="email-address"
+//                   placeholderTextColor={'grey'}
+//                 />
+
+//                 <Field
+//                   component={CustomInput}
+//                   name="password"
+//                   placeholder="𝖯𝖺𝗌𝗌𝗐𝗈𝗋𝖽"
+//                   secureTextEntry
+//                   placeholderTextColor={'grey'}
+//                 />
+//                 <Field
+//                   component={CustomInput}
+//                   name="confirmPassword"
+//                   placeholder="𝖢𝗈𝗇𝖿𝗂𝗋𝗆 𝖯𝖺𝗌𝗌𝗐𝗈𝗋𝖽"
+//                   secureTextEntry
+//                   placeholderTextColor={'grey'}
+//                 />
+//                 <View style={styles.btnbox}>
+//                   <TouchableOpacity
+//                     onPressIn={handleSubmit}
+//                     disabled={!isValid}>
+//                     <View style={styles.btn}>
+//                       <Text
+//                         style={[styles.btntxt, {backgroundColor: '#274997'}]}>
+//                         Signup
+//                       </Text>
+//                     </View>
+//                   </TouchableOpacity>
+//                 </View>
+//               </>
+//             )}
+//           </Formik>
+//         </ScrollView>
+//       </View>
+//     </View>
+//   );
+// }
+// const styles = StyleSheet.create({
+//   mainView: {
+//     flex: 1,
+//     backgroundColor: 'white',
+//     justifyContent: 'center',
+//   },
+
+//   img: {
+//     height: 150,
+//     width: 150,
+//     alignSelf: 'center',
+//   },
+//   txtBox: {
+//     paddingVertical: 8,
+//     marginVertical: 10,
+//   },
+//   txt: {
+//     textAlign: 'center',
+//     fontSize: 26,
+//     fontWeight: '600',
+//     color: 'black',
+//   },
+//   btnbox: {
+//     width: '100%',
+//   },
+//   btn: {
+//     width: '100%',
+//     alignItems: 'center',
+//     marginTop: 20,
+//     marginBottom: 10,
+//   },
+//   btntxt: {
+//     width: '85%',
+//     textAlign: 'center',
+//     color: 'white',
+//     padding: 13,
+//     borderRadius: 7,
+//     textAlignVertical: 'center',
+//     fontSize: 15,
+//   },
+//   headbox: {
+//     width: '85%',
+//     alignSelf: 'center',
+//   },
+//   headtxt: {
+//     padding: 25,
+//     fontSize: 35,
+//     fontWeight: '500',
+//     color: '#398E8B',
+//   },
+//   img: {
+//     height: 150,
+//     width: 150,
+//   },
+// });
+
+
+import React, { Component } from 'react';
+import { View, Text, TouchableOpacity, TextInput, Image, StyleSheet, ScrollView } from 'react-native';
+import Icon from 'react-native-vector-icons/Entypo';
+import Icon1 from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon2 from 'react-native-vector-icons/AntDesign';
+import Fontisto from 'react-native-vector-icons/Fontisto';
+import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Zocial from 'react-native-vector-icons/Zocial';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+
+
+class Sign_Up extends Component {
+    state = {
+        username: '',
+        email: '',
+        phone: '',
+        password: '',
+        confirmpassword: '',
+    }
+
+    signupFunc = () => {
+
+
+
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            body: JSON.stringify({
+                title: 'foot',
+                body: 'bars',
+                userId: 2,
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((response) => response.json())
+            .then((json) => console.log(json));
+
+    }
+
+    render() {
+        return (
+            <View style={{ flex: 1 }}>
+                <ScrollView>
+                    <Image style={styles.topImage}
+                        source={require('../assets/images/header.png')}
+                    />
+
+                    <Text style={styles.heading}>Sign up</Text>
+
+                    <Text style={styles.topHeading}>Sign up to see new and exciting features</Text>
+
+
+                    <View style={styles.container}>
+                        <FontAwesome name="user" style={styles.icons} size={20} color="black" />
+                        <TextInput
+                            placeholder="Choose your user name"
+                            placeholderTextColor="black"
+                            value={this.state.username}
+                            onChangeText={(text) => this.setState({ username: text })}
+                            style={styles.textInputs}
+                        />
                     </View>
-                  </TouchableOpacity>
-                </View>
-              </>
-            )}
-          </Formik>
-        </ScrollView>
-      </View>
-    </View>
-  );
-}
-const styles = StyleSheet.create({
-  mainView: {
-    flex: 1,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-  },
 
-  img: {
-    height: 150,
-    width: 150,
-    alignSelf: 'center',
-  },
-  txtBox: {
-    paddingVertical: 8,
-    marginVertical: 10,
-  },
-  txt: {
-    textAlign: 'center',
-    fontSize: 26,
-    fontWeight: '600',
-    color: 'black',
-  },
-  btnbox: {
-    width: '100%',
-  },
-  btn: {
-    width: '100%',
-    alignItems: 'center',
-    marginTop: 20,
-    marginBottom: 10,
-  },
-  btntxt: {
-    width: '85%',
-    textAlign: 'center',
-    color: 'white',
-    padding: 13,
-    borderRadius: 7,
-    textAlignVertical: 'center',
-    fontSize: 15,
-  },
-  headbox: {
-    width: '85%',
-    alignSelf: 'center',
-  },
-  headtxt: {
-    padding: 25,
-    fontSize: 35,
-    fontWeight: '500',
-    color: '#398E8B',
-  },
-  img: {
-    height: 150,
-    width: 150,
-  },
+
+                    <View style={styles.container}>
+                        <Zocial name="email" style={styles.icons} size={20} color="black" />
+                        <TextInput
+                            placeholder="Enter your E-mail or phone number"
+                            placeholderTextColor="black"
+                            value={this.state.email}
+                            onChangeText={(text) => this.setState({ email: text })}
+                            style={styles.textInputs}
+                        />
+                    </View>
+
+                    <View style={styles.container} >
+                        <Feather name="phone-call" style={styles.icons} size={20} color="black" />
+                        <TextInput
+                            placeholder="Enter your phone number"
+                            placeholderTextColor="black"
+                            value={this.state.phone}
+                            onChangeText={(text) => this.setState({ phone: text })}
+                            style={styles.textInputs}
+                        />
+                    </View>
+
+                    <View style={styles.container} >
+                        <Fontisto name="locked" style={styles.icons} size={20} color="black" />
+                        <TextInput
+                            placeholder="Choose your password"
+                            placeholderTextColor="black"
+                            value={this.state.password}
+                            onChangeText={(text) => this.setState({ pasword: text })}
+                            style={{ marginStart: 20, flex: 1 }}
+                        />
+                        <Feather name="eye-off" style={styles.eyeIcon} size={20} color="black" />
+                    </View>
+
+                    <View style={styles.container} >
+                        <Fontisto name="locked" style={styles.icons} size={20} color="black" />
+                        <TextInput
+                            placeholder="Confirm your password"
+                            placeholderTextColor="black"
+                            value={this.state.confirmpassword}
+                            onChangeText={(text) => this.setState({ confirmpassword: text })}
+                            style={styles.textInputs}
+                        />
+                    </View>
+
+
+                    <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('OTP_Verify')
+                        // this.signupFunc()
+                    } style={styles.signUp}>
+                        <View style={{ flexDirection: "row", alignItems: "center", textAlign: "center", justifyContent: "center" }}>
+                            <Icon2 name="addusergroup" size={17} style={{ textAlign: "center", color: "white", marginTop: 10 }}></Icon2>
+                            <Text style={styles.signUpText}>Sign up</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <View style={{ flexDirection: "row", textAlign: "center", justifyContent: "center", alignItems: "center" }}>
+                        <Text style={{ marginTop: 20 }}>Already User?</Text>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Sign_In')}>
+                            <Text style={{ marginLeft: 20, marginTop: 20, textDecorationLine: 'underline' }}>Login Here</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ScrollView>
+            </View>
+
+        );
+    }
+}
+
+export default Sign_Up;
+
+
+const styles = StyleSheet.create({
+    topImage:
+    {
+        marginTop: -198,
+        marginLeft: -60,
+        width: 500,
+        resizeMode: "stretch"
+    },
+    heading: {
+        textAlign: "center",
+        color: "green",
+        fontSize: 40,
+        fontWeight: "bold"
+    },
+    topHeading: {
+        textAlign: "center",
+        color: "black",
+        fontSize: 20,
+        fontWeight: "bold",
+        marginTop: 15,
+    },
+    container: {
+        height: 45,
+        margin: 10,
+        borderWidth: 2,
+        borderTopRightRadius: 60,
+        borderBottomRightRadius: 60,
+        borderColor: 'grey',
+        marginVertical: 8,
+        marginHorizontal: 25,
+        borderBottomLeftRadius: 60,
+        textAlign: "center",
+        flexDirection: "row",
+    },
+    icons: {
+        marginTop: 8,
+        marginLeft: 15
+    },
+
+    container1: {
+        backgroundColor: 'green',
+        height: 45,
+        padding: 10,
+        borderRadius: 30,
+        marginTop: 30
+    },
+    text: {
+        fontSize: 22,
+        textAlign: "center",
+        color: 'green',
+        fontWeight: 'bold',
+        marginBottom: 90
+
+    },
+    textInputs: {
+        marginStart: 20,
+        flex: 1
+    },
+    eyeIcon: {
+        marginTop: 8,
+        marginRight: 10,
+    },
+    image: {
+        marginTop: 8,
+        marginLeft: 65,
+        alignItems: "center",
+        justifyContent: 'center',
+    },
+    signUp: {
+        marginHorizontal: 70,
+        marginTop: 5,
+        backgroundColor: 'green',
+        borderTopRightRadius: 60,
+        borderBottomRightRadius: 60,
+        borderBottomLeftRadius: 60,
+        height: 40,
+        textAlign: "center",
+    },
+    signUpText: {
+        color: 'white',
+        textAlign: "center",
+        paddingTop: 9,
+        marginLeft: 5
+    }
 });

@@ -291,90 +291,241 @@
 //     // fontFamily: Fonts.PoppinsRegular,
 //   },
 // });
-import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
-import React, {useState} from 'react';
-import Reuse_TextInput from '../components/Reuse_TextInput';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {Colors} from '../Theme/Colors';
-import Btn from '../components/Btn';
-import {ScrollView} from 'react-native-gesture-handler';
 
-const Sign_In = ({navigation}) => {
-  const [secureTextEntry, setsecureTextEntry] = useState(true);
 
-  return (
-    <View style={{backgroundColor: Colors.white, flex: 1}}>
-      <ScrollView style={{marginBottom: '5%'}}>
-        <View style={{alignItems: 'center', marginTop: 100}}>
-          <Image
-            source={require('../../assets/info.png')}
-            style={styles.img}
-            resizeMode="contain"
-          />
-        </View>
+// import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
+// import React, {useState} from 'react';
+// import Reuse_TextInput from '../components/Reuse_TextInput';
+// import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+// import {Colors} from '../Theme/Colors';
+// import Btn from '../components/Btn';
+// import {ScrollView} from 'react-native-gesture-handler';
 
-        <Text style={styles.loginTxt}>Login to your Account</Text>
-        <Reuse_TextInput placeholder={'Email'} />
-        <Reuse_TextInput
-          marginTop={'5%'}
-          secureTextEntry={secureTextEntry}
-          placeholder={'Password'}
-          addIcon={
-            <TouchableOpacity>
-              <MaterialIcons
-                name={secureTextEntry == true ? 'visibility-off' : 'visibility'}
-                size={20}
-                color={Colors.black}
-                onPress={() => {
-                  secureTextEntry == true
-                    ? setsecureTextEntry(false)
-                    : setsecureTextEntry(true);
-                }}
-              />
-            </TouchableOpacity>
-          }
-        />
-        <TouchableOpacity
-          style={styles.forgot}
-          onPress={() => navigation.navigate('Forgot_Password')}>
-          <Text>Forgot Password!</Text>
-        </TouchableOpacity>
+// const Sign_In = ({navigation}) => {
+//   const [secureTextEntry, setsecureTextEntry] = useState(true);
 
-        <TouchableOpacity
-          style={styles.btnbox}
-          onPress={() => navigation.navigate('BottomNavigation')}>
-          <Btn
-            title={'Sign In'}
-            width={'90%'}
-            backgroundColor={'#274997'}
-            color={'white'}
-          />
-        </TouchableOpacity>
-      </ScrollView>
-    </View>
-  );
-};
+//   return (
+//     <View style={{backgroundColor: Colors.white, flex: 1}}>
+//       <ScrollView style={{marginBottom: '5%'}}>
+//         <View style={{alignItems: 'center', marginTop: 100}}>
+//           <Image
+//             source={require('../../assets/info.png')}
+//             style={styles.img}
+//             resizeMode="contain"
+//           />
+//         </View>
+
+//         <Text style={styles.loginTxt}>Login to your Account</Text>
+//         <Reuse_TextInput placeholder={'Email'} />
+//         <Reuse_TextInput
+//           marginTop={'5%'}
+//           secureTextEntry={secureTextEntry}
+//           placeholder={'Password'}
+//           addIcon={
+//             <TouchableOpacity>
+//               <MaterialIcons
+//                 name={secureTextEntry == true ? 'visibility-off' : 'visibility'}
+//                 size={20}
+//                 color={Colors.black}
+//                 onPress={() => {
+//                   secureTextEntry == true
+//                     ? setsecureTextEntry(false)
+//                     : setsecureTextEntry(true);
+//                 }}
+//               />
+//             </TouchableOpacity>
+//           }
+//         />
+//         <TouchableOpacity
+//           style={styles.forgot}
+//           onPress={() => navigation.navigate('Forgot_Password')}>
+//           <Text>Forgot Password!</Text>
+//         </TouchableOpacity>
+
+//         <TouchableOpacity
+//           style={styles.btnbox}
+//           onPress={() => navigation.navigate('Home')}>
+//           <Btn
+//             title={'Sign In'}
+//             width={'90%'}
+//             backgroundColor={'#274997'}
+//             color={'white'}
+//           />
+//         </TouchableOpacity>
+//       </ScrollView>
+//     </View>
+//   );
+// };
+
+// export default Sign_In;
+
+// const styles = StyleSheet.create({
+//   loginTxt: {
+//     fontSize: 22,
+//     color: Colors.black,
+//     textAlign: 'center',
+//     marginVertical: 15,
+//     fontWeight: 'bold',
+//   },
+//   forgot: {
+//     width: '90%',
+//     alignSelf: 'center',
+//     alignItems: 'flex-end',
+//   },
+//   btnbox: {
+//     marginTop: 15,
+//   },
+//   img: {
+//     height: 200,
+//     width: 200,
+//   },
+// });
+
+
+import React, { Component } from 'react';
+import { View, Text, TouchableOpacity, TextInput, Image, StyleSheet } from 'react-native';
+
+import Icon2 from 'react-native-vector-icons/AntDesign';
+import Fontisto from 'react-native-vector-icons/Fontisto';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+
+
+class Sign_In extends Component {
+
+    render() {
+        return (
+            <View style={{ flex: 1 }}>
+
+                <Image style={{ marginTop: -198, marginLeft: -60, width: 500, resizeMode: "stretch" }}
+
+                    source={require('../assets/images/header.png')}
+                />
+
+
+                <Text style={{
+                    textAlign: "center", color: "green", fontSize: 40,
+                    fontWeight: "bold"
+                }}>
+                    Login
+                </Text>
+
+                <Text style={{
+                    textAlign: "center", color: "black", fontSize: 20,
+                    fontWeight: "bold", marginTop: 15,
+                }}>
+                    Log in see new and exciting features
+                </Text>
+                <View style={styles.container}>
+                    <FontAwesome name="user" style={{ marginTop: 8, marginLeft: 15 }} size={20} color="black" />
+                    <TextInput
+                        placeholder="Choose your user name"
+                        placeholderTextColor="black"
+
+
+                        style={{ marginStart: 20, flex: 1 }}
+                    />
+                </View>
+
+
+
+                <View style={styles.container} >
+                    <Fontisto name="locked" style={{ marginTop: 8, marginLeft: 15 }} size={20} color="black" />
+
+                    <TextInput
+                        placeholder="Confirm your password"
+                        placeholderTextColor="black"
+                        style={{ marginStart: 20, flex: 1 }}
+                    />
+
+                </View>
+                <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.navigation.navigate('Forgot_Password')} style={{
+                    marginHorizontal: 70,
+                    marginTop: 5,
+                    backgroundColor: 'green',
+                    borderTopRightRadius: 60,
+                    borderBottomRightRadius: 60,
+                    borderBottomLeftRadius: 60,
+                    height: 40,
+                    textAlign: "center",
+                }}>
+                    <View style={{ flexDirection: "row", alignItems: "center", textAlign: "center", justifyContent: "center" }}>
+                        <SimpleLineIcons name="login" size={17} style={{ textAlign: "center", color: "white", marginTop: 10 }}></SimpleLineIcons>
+                        <Text style={{
+                            color: 'white',
+                            textAlign: "center",
+                            paddingTop: 9,
+                            marginLeft: 5
+                        }}>Login</Text>
+                    </View>
+
+                </TouchableOpacity>
+                <View style={{ flexDirection: "row", textAlign: "center", justifyContent: "center", alignItems: "center" }}>
+                    <Text style={{ marginTop: 20 }}>Forget Password?</Text>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Forgot_Password')}>
+                        <Text style={{ color: "green", marginLeft: 20, marginTop: 20, }}>Reset</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={{ flexDirection: "row", textAlign: "center", justifyContent: "center", alignItems: "center" }}>
+                    <Text style={{ marginTop: 20 }}>New User?</Text>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Sign_Up')}>
+                        <Text style={{ color: "green", marginLeft: 20, marginTop: 20, }}>Signup here</Text>
+                    </TouchableOpacity>
+                </View>
+
+            </View>
+
+        );
+    }
+}
+
+
+
+
 
 export default Sign_In;
-
 const styles = StyleSheet.create({
-  loginTxt: {
-    fontSize: 22,
-    color: Colors.black,
-    textAlign: 'center',
-    marginVertical: 15,
-    fontWeight: 'bold',
-  },
-  forgot: {
-    width: '90%',
-    alignSelf: 'center',
-    alignItems: 'flex-end',
-  },
-  btnbox: {
-    marginTop: 15,
-  },
-  img: {
-    height: 200,
-    width: 200,
-  },
+    container: {
+        height: 45,
+        margin: 10,
+        borderWidth: 2,
+        borderTopRightRadius: 60,
+        borderBottomRightRadius: 60,
+        borderColor: 'grey',
+        marginVertical: 8,
+        marginHorizontal: 25,
+
+
+        borderBottomLeftRadius: 60,
+
+        textAlign: "center",
+        flexDirection: "row",
+    },
+    container1: {
+        backgroundColor: 'green',
+        height: 45,
+        padding: 10,
+        borderRadius: 30,
+        marginTop: 30
+    },
+    text: {
+        fontSize: 22,
+        textAlign: "center",
+        color: 'green',
+        fontWeight: 'bold',
+        marginBottom: 90
+
+    },
+    image: {
+        marginTop: 8,
+        marginLeft: 65,
+        alignItems: "center",
+        justifyContent: 'center',
+    },
+    signup: {
+        color: '#fff',
+        textAlign: 'center',
+        fontWeight: 'bold'
+    }
 });
